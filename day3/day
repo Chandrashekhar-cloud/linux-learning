@@ -1,0 +1,93 @@
+# Day 03 - Viewing Files + Finding Files
+
+## Theory
+- In DevOps you read log files constantly
+- A log file can have millions of lines — you can't open it in notepad
+- Use terminal commands to read, search, and filter
+- Finding files on a server is a daily task
+
+## Commands Learned
+
+### Viewing Files
+| Command | What it does |
+|---------|-------------|
+| `cat file` | Print entire file (small files only) |
+| `less file` | Read file page by page — press q to quit, space for next page |
+| `head file` | Show first 10 lines |
+| `head -n 20 file` | Show first 20 lines |
+| `tail file` | Show last 10 lines |
+| `tail -n 50 file` | Show last 50 lines |
+| `tail -f file` | LIVE — keep showing new lines as they appear (for logs!) |
+
+### Searching Inside Files (grep)
+| Command | What it does |
+|---------|-------------|
+| `grep "word" file` | Search for word in file, shows matching lines |
+| `grep -i "word" f` | Search ignoring uppercase/lowercase |
+| `grep -n "word" f` | Search and show line numbers |
+| `grep -r "word" .` | Search in ALL files in current folder and subfolders |
+| `grep -v "word" f` | Show lines that do NOT contain word |
+| `grep -c "word" f` | Count how many lines match |
+
+### Finding Files (find)
+| Command | What it does |
+|---------|-------------|
+| `find / -name "f"` | Find file named f anywhere on system |
+| `find . -name "*.sh"` | Find all .sh files in current folder |
+| `find . -type f` | Find only files (not folders) |
+| `find . -type d` | Find only directories |
+| `find . -size +1M` | Find files larger than 1MB |
+| `find . -mtime -7` | Find files modified in last 7 days |
+| `find . -size +0c -type f` | Find non-empty files |
+
+### Locating Commands
+| Command | What it does |
+|---------|-------------|
+| `which command` | Show where a command is installed |
+| `locate filename` | Fast search using database (install: apt install mlocate) |
+
+## Key Takeaways
+- `tail -f` is your best friend for watching live logs on production servers — you will use this every day as a DevOps engineer
+- `grep -r` searches recursively through all files — great for finding config values
+- `grep -v` inverts the search — useful for filtering out noise in logs
+- Pipe commands together for power: `grep -v "Line 5" testlog.txt | head`
+- `find /etc -name "*.conf" 2>/dev/null | head -10` — finds config files safely
+
+## Script Written Today
+
+**`day03/search_practice.sh`**
+```bash
+#!/bin/bash
+# Search Practice Script - Day 03
+# Demonstrates grep and find
+
+# Create a test log file
+for i in {1..100}; do
+  echo "Line $i: some log data here"
+done > testlog.txt
+
+echo "=== First 10 lines ==="
+head testlog.txt
+
+echo "=== Last 10 lines ==="
+tail testlog.txt
+
+echo "=== Lines containing 'Line 5' ==="
+grep "Line 5" testlog.txt
+
+echo "=== Count of lines with 'data' ==="
+grep -c "data" testlog.txt
+
+echo "=== Find all .txt files ==="
+find . -name "*.txt"
+
+echo "=== Find all .sh files ==="
+find . -name "*.sh"
+```
+
+## Git Commit
+```bash
+git add .
+git commit -m "Day 3: file viewing and searching"
+git push
+```
