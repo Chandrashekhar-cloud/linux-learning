@@ -1,0 +1,102 @@
+# Day 04 - File Permissions + Ownership
+
+## Theory
+- Every file in Linux has permissions — they control who can read, write, and execute it
+- Wrong permissions = security risk or broken app
+- This is asked in every DevOps interview!
+
+### Reading Permissions (ls -la)
+```
+-rwxr-xr-- 1 john devs 4096 file.sh
+```
+| Position | Meaning |
+|----------|---------|
+| 1 | `-` = regular file, `d` = directory, `l` = link |
+| 2-4 | Owner permissions (r=read, w=write, x=execute) |
+| 5-7 | Group permissions (`-` means no permission) |
+| 8-10 | Others permissions |
+
+### Permission Numbers
+| Number | Meaning |
+|--------|---------|
+| r = 4 | read |
+| w = 2 | write |
+| x = 1 | execute |
+| - = 0 | no permission |
+
+### Common Permission Sets
+| Value | Breakdown | Use case |
+|-------|-----------|---------|
+| `755` | rwx(7) r-x(5) r-x(5) | Owner all, Group read+exec, Others read+exec |
+| `644` | rw-(6) r--(4) r--(4) | Owner read+write, Group read, Others read |
+| `600` | rw-(6) ---(0) ---(0) | Only owner can read and write (private!) |
+| `777` | rwx(7) rwx(7) rwx(7) | Everyone can do everything (NOT for production!) |
+| `400` | r--(4) ---(0) ---(0) | Read only even for owner |
+
+## Commands Learned
+
+### chmod — Change Permissions
+| Command | What it does |
+|---------|-------------|
+| `ls -la` | See permissions for all files |
+| `chmod 755 file` | Set permissions using numbers |
+| `chmod 644 file` | Set read+write for owner, read for others |
+| `chmod 600 file` | Private file — only owner can read/write |
+| `chmod +x file` | Add execute permission for everyone |
+| `chmod -x file` | Remove execute permission |
+| `chmod u+w file` | Add write permission for user (owner) |
+| `chmod g-w file` | Remove write permission from group |
+| `chmod o+r file` | Add read permission for others |
+| `chmod -R 755 dir/` | Change permissions for folder + everything inside |
+
+### chown — Change Ownership
+| Command | What it does |
+|---------|-------------|
+| `chown john file` | Change owner of file to john |
+| `chown john:devs f` | Change owner to john AND group to devs |
+| `chown -R john dir/` | Change owner for folder + everything inside |
+| `chgrp devs file` | Change only the group of a file |
+
+### Info Commands
+| Command | What it does |
+|---------|-------------|
+| `stat file` | See full details including permissions in octal |
+| `umask` | See default permission mask for new files |
+| `whoami` | Note your username |
+
+## Key Takeaways
+- `755` = scripts and folders (owner can edit, everyone can run)
+- `644` = config files (owner can edit, everyone can read)
+- `600` = private files like keys/secrets (only owner can access)
+- `777` = never use in production — massive security risk
+- `/etc/shadow` is permission denied even for regular users — use `sudo` to read it
+- Always `chmod +x` a script before running it
+
+## Script Written Today
+
+**`day04/permissions_demo.sh`**
+```bash
+#!/bin/bash
+# Permissions Demo Script - Day 04
+
+echo "=== Creating test files ==="
+touch public.txt private.txt executable.sh
+
+echo "=== Setting permissions ==="
+chmod 644 public.txt
+chmod 600 private.txt
+chmod 755 executable.sh
+
+echo "=== Result ==="
+ls -la public.txt private.txt executable.sh
+
+echo "=== Stat of private file ==="
+stat private.txt
+```
+
+## Git Commit
+```bash
+git add .
+git commit -m "Day 4: Linux file permissions and chmod"
+git push
+```
