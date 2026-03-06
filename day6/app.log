@@ -1,0 +1,12 @@
+2024-01-01 10:00:01 INFO  Server started successfully
+2024-01-01 10:00:05 DEBUG Database connection established
+2024-01-01 10:01:00 ERROR Failed to process request: timeout
+2024-01-01 10:01:01 WARN  High memory usage detected: 85%
+2024-01-01 10:02:00 INFO  Request processed: user_id=101
+2024-01-01 10:02:05 ERROR Disk space critically low: 95% used
+2024-01-01 10:03:00 DEBUG Cache cleared successfully
+2024-01-01 10:04:00 ERROR Authentication failed for user admin
+2024-01-01 10:05:00 INFO  Backup completed successfully
+2024-01-01 10:06:00 WARN  CPU usage spike: 90% for 30 seconds
+EOF
+
