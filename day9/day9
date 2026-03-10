@@ -1,0 +1,30 @@
+# Day 09 - Package Management (apt)
+
+## Theory
+- On a Linux server you install all software through a package manager
+- Never go to websites and downloading — use apt
+- apt is the package manager for Ubuntu/Linux/Debian
+- This is how you set up servers
+
+## Commands Learned
+
+### apt — Package Manager
+| Command | What it does |
+|---------|-------------|
+| `sudo apt update` | Refresh the list of available packages from internet |
+| `sudo apt upgrade` | Upgrade all installed packages to latest version |
+| `sudo apt install package` | Install a package |
+| `sudo apt install -y package` | Install without asking yes/no (for scripts) |
+| `sudo apt remove package` | Remove a package |
+| `sudo apt purge package` | Remove package AND its config files |
+| `sudo apt autoremove` | Remove packages no longer needed |
+| `apt search keyword` | Search for packages matching keyword |
+| `apt show package` | Show details about a package |
+| `dpkg -l` | List all installed packages |
+| `dpkg -l | grep nginx` | Check if nginx is installed |
+| `dpkg -l | wc -l` | Count installed packages |
+| `which program` | Check if program is installed and find it |
+| `program --version` | Check version of installed program |
+
+## Tools to Install (You Will Need All of Them)
+```bash
