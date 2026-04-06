@@ -13,7 +13,7 @@ hostname -I
 ss -tulnp
 
 # 3. Find all .log files in /var/log
-find /var/log -name "*.log"
+find /var/log -name "*.log".
 
 # 4. Show last 20 lines of /var/log/syslog
 tail -20 /var/log/syslog
