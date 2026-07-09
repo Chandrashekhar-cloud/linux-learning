@@ -136,7 +136,7 @@ linux-learning/
 
 # 👨‍💻 Author
 
-## Chandrashekhar H S 
+## Chandrashekhar H S
 
 CSE (AIML) Student  
 Learning Linux, DevOps, Cloud & SRE
