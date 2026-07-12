@@ -147,6 +147,6 @@ Learning Linux, DevOps, Cloud & SRE
 
 # ⭐ Note
 
-This repository is part of my continuous Linux and DevOps learning journey.
+This repository is part of my continuous Linux and DevOps learning journey
 
 More practice files, commands, and hands-on exercises will be added regularly
