@@ -1,4 +1,4 @@
-# 🐧 Linux Learning Journey 
+# 🐧 Linux Learning Journey
 
 This repository contains my Linux learning practice, commands, notes, and hands-on exercises while building my foundation in Linux, DevOps, Cloud, and SRE.
 
