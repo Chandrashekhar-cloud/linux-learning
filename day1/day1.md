@@ -60,5 +60,5 @@
 ```bash
 git add .
 git commit -m "Day 1: Linux navigation commands"
-git push
+git push 
 ``` 
